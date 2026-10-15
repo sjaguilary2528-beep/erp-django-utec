@@ -1,0 +1,17 @@
+asgiref==3.12.1
+distlib==0.4.3
+dj-database-url==2.1.0
+Django==4.2
+django-environ==0.11.0
+djangorestframework==3.17.2
+filelock==4.0.8
+gunicorn==26.2.0
+packaging==26.3
+platformdirs==4.12.2
+psycopg2-binary==2.9.9
+python-discovery==1.6.1
+sqlparse==0.6.0
+typing_extensions==4.16.0
+tzdata==2026.4
+virtualenv==21.14.2
+whitenoise==6.12.0
