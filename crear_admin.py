@@ -8,9 +8,9 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-username = os.environ.get("admin")
-email = os.environ.get("sj.aguilary.2528@cbtis198.edu.mx")
-password = os.environ.get("070710c7")
+username = os.environ.get("ADMIN_USERNAME")
+email = os.environ.get("ADMIN_EMAIL")
+password = os.environ.get("ADMIN_PASSWORD")
 
 if username and email and password:
     user, created = User.objects.get_or_create(
