@@ -43,14 +43,12 @@ posterior tenga una URL pública verificable desde el inicio del proyecto.
 
 ## 3. Evidencias generadas
 
-- [ ] Repositorio GitHub: `https://github.com/tu-usuario/erp-django-utec`
-- [ ] URL pública Render: `https://erp-django-utec.onrender.com`
+- [ ] Repositorio GitHub: https://github.com/sjaguilary2528-beep/erp-django-utec.git
+- [ ] URL pública Render: https://erp-django-utec-samara.onrender.com
 - [ ] Captura de pantalla: `evidencias/espiral_01/render_url.png`
 - [ ] Captura de pantalla: `evidencias/espiral_01/manage_check.png`
-- [ ] Resultado de tests: `Ran 33 tests in X.XXXs — OK`
-- [ ] Commit de cierre:
-
-
+- [ ] Resultado de tests: Ran 35 tests in 1.296s OK
+- [ ] Commit de cierre: 
 ---
 
 ## 4. Criterios de aceptación verificados
@@ -71,7 +69,11 @@ posterior tenga una URL pública verificable desde el inicio del proyecto.
 |---|---|---|
 | | | |
 | | | |
-
+b7afaf9 (HEAD -> main, origin/main) Corregir variables del superusuario
+48ea360 Actualizar configuracion para produccion
+7bcbc0c Crear superusuario para produccion
+b094e23 Merge con remoto, conservar versiones locales
+806bdea Fix settings_prod y render.yaml para Render
 ---
 
 ## 6. Lecciones aprendidas
