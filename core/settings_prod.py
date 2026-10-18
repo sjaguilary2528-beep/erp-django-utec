@@ -15,7 +15,7 @@ import dj_database_url
 
 # ── SEGURIDAD BÁSICA ───────────────────────────────────────────────────────
 DEBUG      = False
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # ── HOSTS PERMITIDOS ────────────────────────────────────────────────────────
 # Render inyecta RENDER_EXTERNAL_HOSTNAME automáticamente
 _render_host = os.environ.get('RENDER_EXTERNAL_HOSTNAME', '')
