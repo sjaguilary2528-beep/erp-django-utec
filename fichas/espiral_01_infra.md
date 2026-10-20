@@ -48,7 +48,19 @@ posterior tenga una URL pública verificable desde el inicio del proyecto.
 - [ ] Captura de pantalla: `evidencias/espiral_01/render_url.png`
 - [ ] Captura de pantalla: `evidencias/espiral_01/manage_check.png`
 - [ ] Resultado de tests: Ran 35 tests in 1.296s OK
-- [ ] Commit de cierre: 
+- [ ] Commit de cierre: [main 0f3428f] Sprint 0 CIERRE [M1]: Render.com desplegado + 33 tests OK + Ficha Schmelkes E1
+ 14 files changed, 1010 insertions(+), 121 deletions(-)
+ delete mode 100644 Fichas/espiral_01_infra.md
+ create mode 100644 evidencias/Captura de pantalla 2026-10-17 225545.png
+ create mode 100644 evidencias/Captura de pantalla 2026-10-17 225654.png
+ create mode 100644 evidencias/Captura de pantalla 2026-10-17 225738.png
+ create mode 100644 "evidencias/Inicio \302\267 UTEC Celaya.html"
+ create mode 100644 "evidencias/Inicio \302\267 UTEC Celaya_files/bootstrap.bundle.min.js.descarga"
+ create mode 100644 "evidencias/Inicio \302\267 UTEC Celaya_files/bootstrap.min.css"
+ create mode 100644 "evidencias/Inicio \302\267 UTEC Celaya_files/css2"
+ create mode 100644 evidencias/espiral_01
+ create mode 100644 sprint0_retrospective.md
+ create mode 100644 tests/test_w03_deploy.py
 ---
 
 ## 4. Criterios de aceptación verificados
