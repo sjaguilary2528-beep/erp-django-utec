@@ -1,4 +1,5 @@
 ## Sprint Backlog — actualización de estados W05
+### Sprint Goal Entregar la base funcional del ERP: modelos, migraciones, admin y pruebas smoke pasando, listo para desplegar.
 
 | Tarea | Estado |
 |---|---|
