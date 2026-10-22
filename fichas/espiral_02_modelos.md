@@ -72,9 +72,15 @@ cobertura de pruebas ≥ 15 tests de modelo.
 
 (completar al cerrar en W06)
 
-1.
-2.
-3.
+[ ] Fechas de inicio y cierre correctas
+[ ] Tabla de tareas: todos en ✅ con tiempos reales
+[ ] Evidencias: URL de Render, resultado de showmigrations, resultado de tests
+[ ] git log --oneline -5 pegado en el campo de evidencias
+[ ] Criterios de aceptación: todos marcados ✅
+[ ] Al menos 1 problema encontrado documentado con su solución
+[ ] 3 lecciones aprendidas redactadas
+[ ] Tiempo total invertido calculado (W04 + W05 + W06)
+[ ] Campo "Aprobación formal" con fecha y observaciones del asesor
 
 ---
 
