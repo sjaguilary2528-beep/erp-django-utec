@@ -90,7 +90,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # ── Autenticación ─────────────────────────────────────────────────────────
 LOGIN_URL           = '/admin/login/'
-LOGIN_REDIRECT_URL  = '/productos/'
+LOGIN_REDIRECT_URL  = '/admin/'
 LOGOUT_REDIRECT_URL = '/'
 
 # ── DRF ──────────────────────────────────────────────────────────────────
