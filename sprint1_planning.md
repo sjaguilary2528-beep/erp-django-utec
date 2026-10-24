@@ -1,7 +1,7 @@
 ## Sprint 1 — Estado final W06
 ## Sprint Goal
-Completar el diseño e implementación de la base de datos del ERP, aplicar las migraciones, configurar el panel de administración con Jazzmin y validar el funcionamiento mediante pruebas automatizadas.
-
+Dejar listo el modelo de datos del ERP (diseño ER, modelos, migraciones y admin)
+y desplegado en producción.
 
 | Tarea | Estado |
 |---|---|
