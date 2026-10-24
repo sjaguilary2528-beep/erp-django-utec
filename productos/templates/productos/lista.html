@@ -8,11 +8,6 @@
     <span style="margin-left:auto;color:var(--clr-muted);font-size:.85rem;">
         {{ page_obj.paginator.count }} producto(s)
     </span>
-    {% if user.is_authenticated %}
-        <a href="{% url 'productos:crear' %}" class="btn-erp-gold">
-            + Nuevo producto
-        </a>
-    {% endif %}
 </div>
 
 {% if productos %}
@@ -50,14 +45,6 @@
                     <span class="badge-erp-active">{{ p.stock }}</span>
                 {% endif %}
             </td>
-            {% if user.is_authenticated %}
-            <td>
-                <a href="{% url 'productos:editar' p.pk %}"
-                   class="btn-erp-primary btn-erp-sm">Editar</a>
-                <a href="{% url 'productos:eliminar' p.pk %}"
-                   class="btn-erp-danger btn-erp-sm">Eliminar</a>
-            </td>
-            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
