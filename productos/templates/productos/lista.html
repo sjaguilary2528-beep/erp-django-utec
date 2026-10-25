@@ -10,6 +10,12 @@
     </span>
 </div>
 
+{% if perms.productos.add_producto %}
+<div style="margin-bottom:1rem;">
+    <a href="{% url 'productos:crear' %}" class="btn-erp-primary btn-erp-sm">+ Nuevo</a>
+</div>
+{% endif %}
+
 {% if productos %}
 <table class="erp-table">
     <thead>
@@ -20,7 +26,7 @@
             <th>Proveedor</th>
             <th>Precio</th>
             <th>Stock</th>
-            {% if user.is_authenticated %}<th>Acciones</th>{% endif %}
+            {% if perms.productos.change_producto or perms.productos.delete_producto %}<th>Acciones</th>{% endif %}
         </tr>
     </thead>
     <tbody>
@@ -45,6 +51,16 @@
                     <span class="badge-erp-active">{{ p.stock }}</span>
                 {% endif %}
             </td>
+            {% if perms.productos.change_producto or perms.productos.delete_producto %}
+            <td>
+   {% if perms.productos.change_producto %}
+        <a href="{% url 'productos:editar' p.pk %}" class="btn-erp-primary btn-erp-sm">Editar</a>
+    {% endif %}
+    {% if perms.productos.delete_producto %}
+        <a href="{% url 'productos:eliminar' p.pk %}" class="btn-erp-sm" style="color:#c0392b;">Eliminar</a>
+    {% endif %}
+</td>
+{% endif %}
         </tr>
         {% endfor %}
     </tbody>
