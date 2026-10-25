@@ -10,6 +10,7 @@ Resultado esperado:
     Ran 12 tests in X.XXXs
     OK
 """
+from django.contrib.auth.models import Permission
 from decimal import Decimal
 
 from django.contrib.auth.models import User
@@ -90,11 +91,18 @@ class ProductoEscrituraTest(TestCase):
         self.assertFormError(r, 'form', 'precio',
                              'Asegúrese de que este valor sea mayor o igual a 0.00.')
 
+    
     def test_delete_elimina_producto(self):
         """POST /productos/<id>/eliminar/ → borra el producto y redirige."""
+        permiso = Permission.objects.get(
+            codename='delete_producto',
+            content_type__app_label='productos'
+        )
+        self.user.user_permissions.add(permiso)
         self.client.force_login(self.user)
+
         pk = self.prod.pk
-        r  = self.client.post(
+        r = self.client.post(
             reverse('productos:eliminar', args=[pk])
         )
         self.assertRedirects(r, reverse('productos:lista'))
@@ -176,15 +184,22 @@ class VentaEscrituraTest(TestCase):
         r = self.client.get(reverse('ventas:crear'))
         self.assertEqual(r.status_code, 302)
 
+   
     def test_post_valido_crea_venta(self):
         """POST válido crea Venta + DetalleVenta y redirige al detalle."""
+        permiso = Permission.objects.get(
+            codename='add_venta',
+            content_type__app_label='ventas'
+        )
+        self.user.user_permissions.add(permiso)
         self.client.force_login(self.user)
+
         r = self.client.post(reverse('ventas:crear'), {
-            'cliente':         self.cli.pk,
-            'producto':        self.prod.pk,
-            'cantidad':        2,
+            'cliente': self.cli.pk,
+            'producto': self.prod.pk,
+            'cantidad': 2,
             'precio_unitario': '100.00',
-        })
+       })
         self.assertEqual(r.status_code, 302)
         self.assertEqual(Venta.objects.count(), 1)
         venta = Venta.objects.first()
