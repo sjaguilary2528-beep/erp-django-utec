@@ -25,3 +25,15 @@ class ClienteForm(forms.ModelForm):
                        'placeholder': '461 123 4567'}
             ),
         }
+
+    def clean_correo(self):
+        correo = self.cleaned_data['correo']
+
+        existe = Cliente.objects.filter(correo__iexact=correo).exists()
+
+        if existe:
+          raise forms.ValidationError(
+            'Este correo ya existe.'
+        )
+
+        return correo
