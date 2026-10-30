@@ -10,25 +10,24 @@ environ.Env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY  = env('SECRET_KEY', default='dev-key-insegura-solo-para-desarrollo')
 DEBUG       = env('DEBUG', default=True)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.onrender.com', 'localhost', '127.0.0.1'])
+ALLOWED_HOSTS =env.list('ALLOWED_HOSTS', default=['.onrender.com', 'localhost', '127.0.0.1'])
+
 # ── Apps instaladas ───────────────────────────────────────────────────────
 INSTALLED_APPS = [
-    # Jazzmin PRIMERO — antes de django.contrib.admin
-    'jazzmin',                          # ← nueva línea, primera posición
-
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites', # ← requerido por allauth
-    'core',       
+    'django.contrib.sites',        # Requerido por allauth
     # Terceros
-    'allauth',                     # ← nuevo
-    'allauth.account',             # ← nuevo
-    'allauth.socialaccount',       # ← nuevo (para OAuth futuro)
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'rest_framework',
+    'rest_framework.authtoken',    # ← agregar
     'whitenoise.runserver_nostatic',
     # Apps del ERP
     'clientes',
@@ -38,7 +37,6 @@ INSTALLED_APPS = [
     'reportes',
     'configuracion',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -48,9 +46,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware', 
+    'allauth.account.middleware.AccountMiddleware',
 ]
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 ROOT_URLCONF = 'core.urls'
 
 # ── Templates ─────────────────────────────────────────────────────────────
@@ -87,9 +85,10 @@ USE_TZ        = True
 # ── Archivos estáticos ────────────────────────────────────────────────────
 STATIC_URL  = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Carpetas adicionales de estáticos (fuentes originales, NO el destino)
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_MANIFEST_STRICT = False
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # ── Archivos media ────────────────────────────────────────────────────────
 MEDIA_URL  = '/media/'
@@ -102,9 +101,15 @@ LOGOUT_REDIRECT_URL = '/'
 
 # ── DRF ──────────────────────────────────────────────────────────────────
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',   # para el navegador
+        'rest_framework.authentication.TokenAuthentication',     # para clientes externos
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -177,27 +182,29 @@ JAZZMIN_SETTINGS = {
 }
 
 JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+    "default_theme_mode": "auto",
     'navbar_small_text':        False,
     'footer_small_text':        False,
     'body_small_text':          False,
     'brand_small_text':         False,
-    'brand_colour':             'navbar-dark',
-    'accent':                   'accent-navy',
+    'brand_colour':             'navbar-light',
+    'accent':                   'accent-purple',
     'navbar':                   'navbar-dark',
     'no_navbar_border':         False,
     'navbar_fixed':             True,
     'layout_boxed':             False,
     'footer_fixed':             False,
     'sidebar_fixed':            True,
-    'sidebar':                  'sidebar-dark-navy',
+    'sidebar':                  'sidebar-light-purple',
     'sidebar_nav_small_text':   False,
     'sidebar_disable_expand':   False,
     'sidebar_nav_child_indent': True,
-    'sidebar_nav_compact_style': False,
-    'sidebar_nav_legacy_style': False,
+    'sidebar_nav_compact_style': False, 
+    'sidebar_nav_legacy_style': False, 
     'sidebar_nav_flat_style':   False,
     'theme':                    'default',
-    'dark_mode_theme':          None,
+    'default_theme_mode':          "auto", 
     'button_classes': {
         'primary':   'btn-primary',
         'secondary': 'btn-secondary',
@@ -207,28 +214,17 @@ JAZZMIN_UI_TWEAKS = {
         'success':   'btn-success',
     },
 }
-
-# ── DJANGO SITES (requerido por allauth) ──────────────────────────────────
+# ── DJANGO SITES Y ALLAUTH ───────────────────────────────────────────────
 SITE_ID = 1
 
-# ── AUTHENTICATION BACKENDS ───────────────────────────────────────────────
 AUTHENTICATION_BACKENDS = [
-    # Backend estándar de Django (username + password en admin)
     'django.contrib.auth.backends.ModelBackend',
-    # Backend de allauth (permite login por email también)
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-# ── ALLAUTH: configuración para desarrollo académico ──────────────────────
-ACCOUNT_LOGIN_METHODS          = {'username'}   # login por username
-ACCOUNT_EMAIL_REQUIRED         = False          # no obligar correo
-ACCOUNT_EMAIL_VERIFICATION     = 'none'         # no enviar email de verificación
-ACCOUNT_LOGOUT_ON_GET          = True           # logout sin confirmar (dev)
-ACCOUNT_SESSION_REMEMBER       = True           # recordar sesión
-
-# LOGIN_URL y LOGIN_REDIRECT_URL ya definidos en W01:
-# LOGIN_URL           = '/accounts/login/'
-# LOGIN_REDIRECT_URL  = '/productos/'
+ACCOUNT_LOGIN_METHODS          = {'username'}
+ACCOUNT_EMAIL_REQUIRED         = False
+ACCOUNT_EMAIL_VERIFICATION     = 'none'
+ACCOUNT_LOGOUT_ON_GET          = True
+ACCOUNT_SESSION_REMEMBER       = True
 LOGOUT_REDIRECT_URL = '/'
-
-
