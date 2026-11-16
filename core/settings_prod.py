@@ -31,7 +31,7 @@ DATABASES = {
     'default': dj_database_url.config(
         conn_max_age=600,          # conexiones persistentes 10 min
         conn_health_checks=True,   # verifica conexión antes de usarla
-        ssl_require=True,          # Render requiere SSL en PostgreSQL
+        ssl_require=os.environ.get('DB_SSL_REQUIRE', 'True') == 'True',   # Render requiere SSL; en local se apaga
     )
 }
 
@@ -41,7 +41,7 @@ if _render_host:
     CSRF_TRUSTED_ORIGINS.append(f'https://{_render_host}')
 
 # ── HEADERS HTTP SEGUROS ───────────────────────────────────────────────────
-SECURE_SSL_REDIRECT            = True
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'True') == 'True'
 SECURE_HSTS_SECONDS            = 31536000    # 1 año
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD            = True
