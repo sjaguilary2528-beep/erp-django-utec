@@ -1,28 +1,32 @@
-# render.yaml
-# Documentación: https://render.com/docs/infrastructure-as-code
+```yaml
+# render.yaml — versión con Docker
 
 services:
   - type: web
-    name: erp_utec_django-1
-    env: python
+    name: erp-django-utec
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     plan: free
     region: oregon
-    branch: main
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --no-input
-    preDeployCommand: python manage.py migrate
-    startCommand: gunicorn core.wsgi --workers 2 --timeout 120 --log-file -
+
+    # El ENTRYPOINT del Dockerfile inicia la aplicación
     healthCheckPath: /
+
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: core.settings_prod
+
       - key: SECRET_KEY
         generateValue: true
+
+      - key: DEBUG
+        value: "False"
+
       - key: DATABASE_URL
         fromDatabase:
           name: erp-django-db
           property: connectionString
-      - key: PYTHON_VERSION
-        value: "3.11.9"
 
 databases:
   - name: erp-django-db
@@ -30,3 +34,4 @@ databases:
     user: erp_user
     plan: free
     region: oregon
+```
