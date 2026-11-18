@@ -1,20 +1,65 @@
+
 {% extends "base.html" %}
 {% block title %}Ventas{% endblock %}
 {% block nav_ventas %}active{% endblock %}
 
 {% block content %}
 <div class="erp-page-title">
-    <h2>💰 Ventas</h2>
-    <span class="badge-erp-gold ms-auto">Espiral 3 · W07</span>
+    <h2>Ventas</h2>
 </div>
-<div class="erp-card">
-    <div class="erp-card-header">Módulo de Ventas y Pedidos</div>
-    <p>Ciclo de ventas, pedidos, facturación y seguimiento.</p>
-    <div class="erp-alert-info">
-        <strong>Estado W02:</strong> Módulo en construcción.
-        CRUD + API en <span class="badge-erp-gold">Espiral 3 · W07–W09</span>
-    </div>
-    <br>
-    <a href="/" class="btn-erp-primary">← Inicio</a>
+
+{% if ventas %}
+<table class="erp-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            {% if user.is_authenticated %}
+                <th>Acciones</th>
+            {% endif %}
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for v in ventas %}
+        <tr>
+            <td>
+                <a href="{% url 'ventas:detalle' venta_id=v.pk %}">
+                    #{{ v.pk }}
+                </a>
+            </td>
+            <td>{{ v.cliente }}</td>
+            <td>{{ v.fecha|date:"d/m/Y H:i" }}</td>
+            <td>${{ v.total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if is_paginated %}
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">
+            Anterior
+        </a>
+    {% endif %}
+
+    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">
+            Siguiente
+        </a>
+    {% endif %}
 </div>
+{% endif %}
+
+{% else %}
+<div class="erp-alert-info">
+    No hay ventas registradas aún.
+</div>
+{% endif %}
+
 {% endblock %}

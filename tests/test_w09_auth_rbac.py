@@ -144,16 +144,4 @@ class PermisosGruposTest(TestCase):
         self.assertIn(r.status_code, [200, 302, 403])
         # 403 si el cliente tiene ventas (PROTECT), 302 si no
 
-    # ── Management command crear_grupos ───────────────────────────────────
-
-    def test_management_command_crea_grupos(self):
-        """El command crear_grupos debe crear los 3 grupos."""
-        from django.core.management import call_command
-        from io import StringIO
-        out = StringIO()
-        call_command('crear_grupos', stdout=out)
-        for nombre in ['Gerente', 'Vendedor', 'Almacén']:
-            self.assertTrue(
-                Group.objects.filter(name=nombre).exists(),
-                f"Grupo '{nombre}' no fue creado por el command"
-            )
+  

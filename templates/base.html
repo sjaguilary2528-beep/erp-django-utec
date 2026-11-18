@@ -18,232 +18,120 @@
 
     <!-- Fable 5 AzulERP — Design System -->
     <style>
-        /* TOKENS MODO DÍA */
-        :root, [data-theme="light"] {
-            --clr-navy   : #0A2342;
-            --clr-royal  : #1B4F8A;
-            --clr-sky    : #4A90D9;
-            --clr-ice    : #E8F0FB;
-            --clr-gold   : #B8860B;
-            --clr-amber  : #D4A017;
-            --clr-cream  : #FDF8E8;
-            --clr-bg     : #F5F7FA;
-            --clr-surface: #FFFFFF;
-            --clr-text   : #1A1A2E;
-            --clr-muted  : #5A6A7E;
-            --clr-border : #C8D8EC;
-            --clr-danger : #C0392B;
-            --clr-ok     : #1A7A4A;
-            --shadow-sm  : 0 1px 4px rgba(10,35,66,.08);
-            --shadow-md  : 0 4px 16px rgba(10,35,66,.12);
-        }
-        /* TOKENS MODO NOCHE */
-        [data-theme="dark"] {
-            --clr-navy   : #1E3A5F;
-            --clr-royal  : #2E5F9E;
-            --clr-sky    : #6BAEE8;
-            --clr-ice    : #1A2A3A;
-            --clr-gold   : #D4AF37;
-            --clr-amber  : #E8C547;
-            --clr-cream  : #2A2510;
-            --clr-bg     : #0D1B2A;
-            --clr-surface: #142033;
-            --clr-text   : #E2EAF4;
-            --clr-muted  : #8AA0B8;
-            --clr-border : #2A3F58;
-            --clr-danger : #E74C3C;
-            --clr-ok     : #2ECC71;
-            --shadow-sm  : 0 1px 4px rgba(0,0,0,.3);
-            --shadow-md  : 0 4px 16px rgba(0,0,0,.4);
-        }
-        /* BASE */
-        *, *::before, *::after { box-sizing: border-box; }
-        body {
-            font-family: 'Inter','Segoe UI',sans-serif;
-            font-size: 15px;
-            background: var(--clr-bg);
-            color: var(--clr-text);
-            line-height: 1.6;
-            transition: background .25s, color .25s;
-            margin: 0;
-        }
-        /* NAVBAR */
-        .erp-navbar {
-            background: var(--clr-navy);
-            border-bottom: 3px solid var(--clr-gold);
-            padding: .65rem 1.5rem;
-            display: flex; align-items: center;
-            justify-content: space-between; flex-wrap: wrap; gap: .5rem;
-            box-shadow: var(--shadow-md);
-        }
-        .erp-brand {
-            font-family: 'Playfair Display',Georgia,serif;
-            font-size: 1.3rem; font-weight: 700;
-            color: var(--clr-gold) !important;
-            text-decoration: none; letter-spacing: .04em;
-        }
-        .erp-brand span { color: rgba(255,255,255,.7); font-weight: 300; font-size: .85em; }
-        .erp-nav-links { display: flex; align-items: center; gap: .25rem; flex-wrap: wrap; }
-        .erp-nav-link {
-            color: rgba(255,255,255,.82) !important;
-            font-size: .88rem; font-weight: 500;
-            padding: .35rem .75rem; border-radius: 6px;
-            text-decoration: none;
-            transition: background .2s, color .2s;
-        }
-        .erp-nav-link:hover, .erp-nav-link.active {
-            background: var(--clr-royal); color: #FFF !important;
-        }
-        .theme-toggle {
-            background: var(--clr-gold); color: var(--clr-navy);
-            border: none; border-radius: 50%;
-            width: 32px; height: 32px; font-size: .9rem;
-            cursor: pointer; transition: transform .2s;
-        }
-        .theme-toggle:hover { transform: rotate(20deg); }
-        /* CONTENIDO */
-        .erp-main { padding: 2rem 0; min-height: calc(100vh - 110px); }
-        /* CARDS */
-        .erp-card {
-            background: var(--clr-surface);
-            border: 1px solid var(--clr-border);
-            border-radius: 12px; box-shadow: var(--shadow-sm);
-            padding: 1.5rem; margin-bottom: 1.5rem;
-            transition: box-shadow .2s;
-        }
-        .erp-card:hover { box-shadow: var(--shadow-md); }
-        .erp-card-header {
-            background: var(--clr-navy); color: #FFF;
-            border-radius: 10px 10px 0 0;
-            padding: .85rem 1.25rem;
-            border-left: 5px solid var(--clr-gold);
-            font-family: 'Playfair Display',serif;
-            font-size: 1.05rem; letter-spacing: .03em;
-            margin: -1.5rem -1.5rem 1.5rem;
-        }
-        /* TABLAS */
-        .erp-table {
-            width: 100%; border-collapse: separate; border-spacing: 0;
-            border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm);
-        }
-        .erp-table thead th {
-            background: var(--clr-navy); color: #FFF;
-            font-weight: 600; font-size: .82rem;
-            text-transform: uppercase; letter-spacing: .06em;
-            padding: .75rem 1rem; border-bottom: 3px solid var(--clr-gold);
-        }
-        .erp-table tbody td {
-            background: var(--clr-surface); padding: .65rem 1rem;
-            border-bottom: 1px solid var(--clr-border); font-size: .9rem;
-        }
-        .erp-table tbody tr:nth-child(even) td { background: var(--clr-ice); }
-        .erp-table tbody tr:hover td { background: rgba(74,144,217,.08); }
-        .erp-table tfoot td {
-            background: var(--clr-cream); color: var(--clr-gold);
-            font-weight: 700; border-top: 2px solid var(--clr-gold);
-        }
-        /* BOTONES */
-        .btn-erp-primary {
-            background: var(--clr-navy); color: #FFF;
-            border: 2px solid var(--clr-gold); border-radius: 8px;
-            padding: .45rem 1.2rem; font-weight: 600; font-size: .88rem;
-            cursor: pointer; text-decoration: none; display: inline-block;
-            transition: background .2s, color .2s;
-        }
-        .btn-erp-primary:hover { background: var(--clr-gold); color: var(--clr-navy); }
-        .btn-erp-gold {
-            background: var(--clr-gold); color: var(--clr-navy);
-            border: 2px solid var(--clr-navy); border-radius: 8px;
-            padding: .45rem 1.2rem; font-weight: 700;
-            cursor: pointer; text-decoration: none; display: inline-block;
-            transition: background .2s;
-        }
-        .btn-erp-gold:hover { background: var(--clr-amber); }
-        .btn-erp-danger {
-            background: var(--clr-danger); color: #FFF; border: none;
-            border-radius: 8px; padding: .4rem 1rem;
-            font-weight: 600; font-size: .85rem;
-            cursor: pointer; text-decoration: none; display: inline-block;
-        }
-        .btn-erp-sm { padding: .25rem .7rem; font-size: .8rem; }
-        /* FORMULARIOS */
-        .erp-label {
-            font-size: .83rem; font-weight: 600; color: var(--clr-muted);
-            text-transform: uppercase; letter-spacing: .05em;
-            display: block; margin-bottom: .3rem;
-        }
-        .erp-input {
-            background: var(--clr-surface); border: 1.5px solid var(--clr-border);
-            border-radius: 8px; color: var(--clr-text);
-            padding: .5rem .85rem; width: 100%; font-size: .93rem;
-            transition: border-color .2s, box-shadow .2s;
-        }
-        .erp-input:focus {
-            outline: none; border-color: var(--clr-sky);
-            box-shadow: 0 0 0 3px rgba(74,144,217,.18);
-        }
-        /* BADGES */
-        .badge-erp-active {
-            background: rgba(26,122,74,.12); color: var(--clr-ok);
-            border: 1px solid currentColor;
-            font-size: .75rem; padding: .2rem .6rem;
-            border-radius: 20px; font-weight: 600;
-        }
-        .badge-erp-inactive {
-            background: rgba(192,57,43,.1); color: var(--clr-danger);
-            border: 1px solid currentColor;
-            font-size: .75rem; padding: .2rem .6rem; border-radius: 20px;
-        }
-        .badge-erp-gold {
-            background: var(--clr-cream); color: var(--clr-gold);
-            border: 1px solid var(--clr-gold);
-            font-size: .75rem; padding: .2rem .7rem;
-            border-radius: 20px; font-weight: 700;
-        }
-        /* ALERTAS */
-        .erp-alert-danger {
-            background: rgba(192,57,43,.08); border: 1px solid rgba(192,57,43,.3);
-            border-left: 5px solid var(--clr-danger); border-radius: 8px;
-            padding: 1rem 1.25rem;
-        }
-        .erp-alert-info {
-            background: var(--clr-ice); border: 1px solid var(--clr-border);
-            border-left: 5px solid var(--clr-sky); border-radius: 8px;
-            padding: 1rem 1.25rem;
-        }
-        .erp-alert-success {
-            background: rgba(26,122,74,.08); border: 1px solid rgba(26,122,74,.3);
-            border-left: 5px solid var(--clr-ok); border-radius: 8px;
-            padding: 1rem 1.25rem;
-        }
-        /* TÍTULO DE PÁGINA */
-        .erp-page-title {
-            display: flex; align-items: center; gap: 1rem;
-            margin-bottom: 1.5rem; padding-bottom: .75rem;
-            border-bottom: 2px solid var(--clr-border);
-        }
-        .erp-page-title h2 {
-            font-family: 'Playfair Display',serif;
-            font-size: 1.6rem; color: var(--clr-navy); margin: 0;
-        }
-        [data-theme="dark"] .erp-page-title h2 { color: var(--clr-sky); }
-        /* CÓDIGO */
-        code, .mono {
-            font-family: 'JetBrains Mono',Consolas,monospace;
-            font-size: .85em; color: var(--clr-royal);
-            background: var(--clr-ice); padding: .1em .4em; border-radius: 4px;
-        }
-        [data-theme="dark"] code,
-        [data-theme="dark"] .mono {
-            color: var(--clr-sky); background: rgba(74,144,217,.12);
-        }
-        /* FOOTER */
-        .erp-footer {
-            background: var(--clr-navy); color: rgba(255,255,255,.6);
-            text-align: center; font-size: .78rem;
-            padding: .75rem; border-top: 2px solid var(--clr-gold);
-        }
-    </style>
+    :root {
+        /* Paleta pastel */
+        --clr-bg: #F8F5FF;
+        --clr-surface: #FFFFFF;
+        --clr-primary: #B8A5E3;
+        --clr-secondary: #E8E0F7;
+        --clr-pink: #F9E3EC;
+        --clr-blue: #DFF3F5;
+        --clr-mint: #DFF2E5;
+        --clr-peach: #FFF0D9;
+
+        /* Texto y detalles */
+        --clr-text: #393449;
+        --clr-muted: #777184;
+        --clr-border: #E7E0EF;
+        --clr-navy: #63527F;
+        --clr-gold: #C6A5C8;
+
+        /* Sombras */
+        --shadow-md: 0 4px 14px rgba(75, 57, 100, 0.10);
+    }
+
+    body {
+        background-color: var(--clr-bg);
+        color: var(--clr-text);
+    }
+
+    h1, h2, h3, h4, h5 {
+        color: var(--clr-navy);
+    }
+
+    /* Tarjetas del ERP */
+    .erp-card,
+    .erp-module-card {
+        background: var(--clr-surface);
+        border: 1px solid var(--clr-border);
+        border-radius: 16px;
+        box-shadow: var(--shadow-md);
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .erp-card:hover,
+    .erp-module-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(75, 57, 100, .14);
+        border-color: var(--clr-primary);
+    }
+
+    /* Botones */
+    .btn-primary {
+        background-color: var(--clr-primary);
+        border-color: var(--clr-primary);
+        color: #FFFFFF;
+    }
+
+    .btn-primary:hover {
+        background-color: #9D88CF;
+        border-color: #9D88CF;
+        color: #FFFFFF;
+    }
+
+    .btn-success {
+        background-color: #77B995;
+        border-color: #77B995;
+    }
+
+    .btn-info {
+        background-color: var(--clr-blue);
+        border-color: var(--clr-blue);
+        color: #28565C;
+    }
+
+    .btn-warning {
+        background-color: var(--clr-peach);
+        border-color: #F0D7AD;
+        color: #6B4A20;
+    }
+
+    .btn-danger {
+        background-color: #D987A2;
+        border-color: #D987A2;
+    }
+
+    /* Campos de formularios */
+    input, select, textarea {
+        border: 1px solid var(--clr-border) !important;
+        border-radius: 8px !important;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: var(--clr-primary) !important;
+        box-shadow: 0 0 0 .2rem rgba(184, 165, 227, .22) !important;
+    }
+
+    /* Etiquetas */
+    .badge-erp-gold {
+        display: inline-block;
+        background: var(--clr-secondary);
+        color: var(--clr-navy);
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-weight: 600;
+    }
+
+    /* Tablas */
+    .table thead th {
+        background: var(--clr-secondary);
+        color: var(--clr-navy);
+    }
+
+    .table tbody tr:hover {
+        background-color: #F4EFFB;
+    }
+</style>
     {% block extra_css %}{% endblock %}
 </head>
 

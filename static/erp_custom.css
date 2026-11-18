@@ -1,170 +1,54 @@
-/* static/erp_custom.css
-   Utilidades adicionales de Fable 5 AzulERP.
-   Las variables CSS principales están definidas en base.html.
-*/
+/* ── JAZZMIN: Colores Pastel Forzados ───────────────────────────────── */
 
-/* Tarjetas clicables en la bienvenida */
-.erp-module-card {
-    transition: transform .2s, box-shadow .2s;
-    cursor: pointer;
+/* 1. Barra superior (Navbar) */
+.main-header.navbar, .navbar {
+    background-color: #6B5B95 !important; /* Morado pastel */
+    border-bottom: 3px solid #FFB347 !important; /* Línea durazno */
 }
-.erp-module-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+.main-header.navbar .nav-link, .brand-text { 
+    color: #FFFFFF !important; 
 }
+.brand-text { font-weight: 800 !important; }
 
-/* Utilidades de color */
-.text-gold   { color: var(--clr-gold)  !important; }
-.text-navy   { color: var(--clr-navy)  !important; }
-.bg-navy     { background: var(--clr-navy) !important; }
-.border-gold { border-color: var(--clr-gold) !important; }
-
-/* Código monoespaciado */
-.font-mono {
-    font-family: 'JetBrains Mono', Consolas, monospace !important;
-    font-size: .9em;
+/* 2. Barra lateral (Sidebar) */
+.main-sidebar, .sidebar, .sidebar-dark-navy { 
+    background-color: #F3E5F5 !important; /* Lila muy claro */
+    border-right: 2px solid #D1C4E9 !important;
 }
-/* ── JAZZMIN: Override de colores con Fable 5 AzulERP ─────────────────── */
-
-/* Sidebar color navy */
-.main-sidebar, .sidebar { background-color: #0A2342 !important; }
-
-/* Navbar color navy */
-.main-header.navbar { background-color: #0A2342 !important; }
-
-/* Brand / logo area */
-.brand-link { border-bottom: 1px solid #B8860B !important; }
-.brand-text  { color: #D4AF37 !important; font-weight: 700 !important; }
-
-/* Sidebar links */
-.nav-sidebar .nav-link { color: rgba(255,255,255,.82) !important; }
-.nav-sidebar .nav-link:hover,
-.nav-sidebar .nav-link.active {
-    background-color: #1B4F8A !important;
-    color: #FFFFFF !important;
+.nav-sidebar .nav-link { 
+    color: #4A4A4A !important; 
+}
+.nav-sidebar .nav-link:hover, .nav-sidebar .nav-link.active {
+    background-color: #D1C4E9 !important; /* Lila al pasar el mouse */
+    color: #6B5B95 !important;
+    font-weight: bold;
 }
 
-/* Accent: botones y badges en dorado */
-.accent-navy .nav-sidebar .nav-link.active {
-    background-color: #B8860B !important;
+/* 3. Títulos de las secciones (Clientes, Productos, etc.) */
+.content-header h1, .card-title, .card-header {
+    color: #6B5B95 !important;
+}
+.card {
+    border: 1px solid #E1BEE7 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 10px rgba(107, 91, 149, 0.08) !important;
 }
 
-/* Footer */
-.main-footer { border-top: 2px solid #B8860B; }
-
-
-/* ── ERP: diseño pastel ─────────────────────────────── */
-
-.erp-welcome-title {
-    font-family: 'Playfair Display', serif;
-    color: #35466F;
-    font-size: 2.2rem;
-    font-weight: 700;
+/* 4. Botones (Agregar / Modificar) */
+.btn-success { 
+    background-color: #A5D6A7 !important; 
+    border-color: #81C784 !important; 
+    color: #1B5E20 !important; 
+    border-radius: 6px !important;
+}
+.btn-info { 
+    background-color: #90CAF9 !important; 
+    border-color: #64B5F6 !important; 
+    color: #0D47A1 !important; 
+    border-radius: 6px !important;
 }
 
-.erp-welcome-subtitle {
-    color: #687795;
-    font-size: 1.05rem;
+/* 5. Fondo general */
+.content-wrapper, .right-side {
+    background-color: #F9F9FB !important;
 }
-
-/* Tarjetas con colores pastel */
-.erp-modules .col-md-4:nth-child(6n+1) .erp-pastel-card {
-    --pastel-bg: #E3F0FF;
-    --pastel-border: #B8D8FF;
-    --pastel-accent: #76ACF5;
-}
-
-.erp-modules .col-md-4:nth-child(6n+2) .erp-pastel-card {
-    --pastel-bg: #F0E8FF;
-    --pastel-border: #D9C4FF;
-    --pastel-accent: #A58AE8;
-}
-
-.erp-modules .col-md-4:nth-child(6n+3) .erp-pastel-card {
-    --pastel-bg: #E0F7EE;
-    --pastel-border: #A9E7D0;
-    --pastel-accent: #58C7A5;
-}
-
-.erp-modules .col-md-4:nth-child(6n+4) .erp-pastel-card {
-    --pastel-bg: #FFF1D9;
-    --pastel-border: #FFDB9A;
-    --pastel-accent: #E8B449;
-}
-
-.erp-modules .col-md-4:nth-child(6n+5) .erp-pastel-card {
-    --pastel-bg: #E0F5FF;
-    --pastel-border: #A8E1F7;
-    --pastel-accent: #55BBD9;
-}
-
-.erp-modules .col-md-4:nth-child(6n) .erp-pastel-card {
-    --pastel-bg: #FFE7F0;
-    --pastel-border: #FFC0D8;
-    --pastel-accent: #E88DB4;
-}
-
-.erp-pastel-card {
-    position: relative;
-    height: 100%;
-    min-height: 155px;
-    padding: 1.5rem 1rem 2rem;
-    overflow: hidden;
-    text-align: center;
-    cursor: pointer;
-    background: var(--pastel-bg, #F0E8FF) !important;
-    border: 1px solid var(--pastel-border, #D9C4FF) !important;
-    border-radius: 18px !important;
-    box-shadow: 0 4px 12px rgba(70, 85, 125, .07);
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.erp-pastel-card:hover,
-.erp-pastel-card:focus-visible {
-    transform: translateY(-4px);
-    box-shadow: 0 9px 22px rgba(70, 85, 125, .14);
-    outline: 2px solid var(--pastel-accent, #A58AE8);
-    outline-offset: 2px;
-}
-
-.erp-module-icon {
-    font-size: 2.5rem;
-    line-height: 1.4;
-    margin-bottom: .5rem;
-}
-
-.erp-module-title {
-    display: block;
-    color: #35466F;
-    font-size: 1.08rem;
-}
-
-.erp-module-description {
-    color: #687795;
-    font-size: .88rem;
-    margin: .4rem 0 0;
-}
-
-.erp-module-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    margin-top: .8rem;
-    color: white;
-    background: var(--pastel-accent, #A58AE8);
-    border-radius: 50%;
-}
-
-/* Ajuste para pantallas pequeñas */
-@media (max-width: 576px) {
-    .erp-welcome-title {
-        font-size: 1.8rem;
-    }
-
-    .erp-pastel-card {
-        min-height: 135px;
-    }
-}
-

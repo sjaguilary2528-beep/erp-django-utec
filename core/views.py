@@ -1,21 +1,14 @@
 # core/views.py
 """Vistas principales del proyecto ERP — W02.
 
-Migración: HttpResponse → render() con templates y contexto.
+Migracion: HttpResponse -> render() con templates y contexto.
 """
 from django.shortcuts import render
 from django.urls import reverse
 
 
 def bienvenida(request):
-    """Página de inicio del ERP con tarjetas de módulos.
-
-    Context:
-        modulos (list): Lista de dicts con icono, nombre, url y descripcion.
-
-    Returns:
-        HttpResponse con template bienvenida.html.
-    """
+    """Pagina de inicio del ERP con tarjetas de modulos."""
     modulos = [
         {
             'nombre': 'Productos',
