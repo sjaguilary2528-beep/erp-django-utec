@@ -131,6 +131,89 @@
     .table tbody tr:hover {
         background-color: #F4EFFB;
     }
+
+    /* Navegación pastel */
+    .erp-navbar {
+        background: var(--clr-secondary);
+        border-bottom: 1px solid var(--clr-border);
+        padding: 14px 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .erp-brand {
+        color: var(--clr-navy);
+        font-weight: 700;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+
+    .erp-brand span {
+        font-size: .85rem;
+        font-weight: 400;
+        color: var(--clr-muted);
+    }
+
+    .erp-nav-links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .erp-nav-link {
+        color: var(--clr-navy);
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 20px;
+        transition: background .2s ease;
+    }
+
+    .erp-nav-link:hover,
+    .erp-nav-link.active {
+        background: var(--clr-pink);
+        color: var(--clr-navy);
+    }
+
+    .theme-toggle {
+        background: var(--clr-blue);
+        border: 1px solid var(--clr-border);
+        border-radius: 50%;
+        padding: 7px 10px;
+        cursor: pointer;
+    }
+
+    /* Contenido y pie de página */
+    .erp-main {
+        min-height: calc(100vh - 145px);
+        padding: 35px 0;
+    }
+
+    .erp-footer {
+        background: var(--clr-secondary);
+        color: var(--clr-muted);
+        text-align: center;
+        padding: 18px;
+        border-top: 1px solid var(--clr-border);
+    }
+
+    /* Sombras y tarjetas */
+    :root {
+        --shadow-sm: 0 2px 8px rgba(75, 57, 100, .08);
+    }
+
+    .erp-card {
+        padding: 24px;
+    }
+
+    .badge-erp-gold {
+        background: var(--clr-peach);
+        color: var(--clr-navy);
+        border: 1px solid var(--clr-border);
+    }
 </style>
     {% block extra_css %}{% endblock %}
 </head>
