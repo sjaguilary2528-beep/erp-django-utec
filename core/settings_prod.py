@@ -77,6 +77,7 @@ if _bucket:
 
 # ── ARCHIVOS ESTÁTICOS ─────────────────────────────────────────────────────
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MANIFEST_STRICT = False
 
 # ── LOGGING: Configuración corregida para evitar el error 500 ─────────────
 LOGGING = {
