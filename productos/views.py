@@ -6,6 +6,10 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import Producto
 from .forms import ProductoForm
+from django.http import HttpResponse
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill
+from django.contrib.auth.decorators import login_required
 
 
 # --- VISTAS DE LECTURA (W07) ---
@@ -80,3 +84,54 @@ class ProductoDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
         response = super().form_valid(form)
         messages.success(self.request, f'Producto "{nombre}" eliminado.')
         return response
+
+
+# --- EXPORTACIÓN EXCEL (W12) ---
+
+@login_required
+def exportar_excel(request):
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Productos"
+
+    encabezados = [
+        "Nombre", "Precio", "Stock", "Categoría",
+        "Proveedor", "Activo", "Fecha de registro"
+    ]
+    ws.append(encabezados)
+
+    for celda in ws[1]:
+        celda.font = Font(bold=True, color="FFFFFF")
+        celda.fill = PatternFill(
+            start_color="0A2342",
+            end_color="0A2342",
+            fill_type="solid"
+        )
+
+    productos = Producto.objects.select_related(
+        "categoria", "proveedor"
+    ).all().order_by("nombre")
+
+    for producto in productos:
+        ws.append([
+            producto.nombre,
+            float(producto.precio),
+            producto.stock,
+            producto.categoria.nombre,
+            producto.proveedor.nombre if producto.proveedor else "",
+            "Sí" if producto.activo else "No",
+            producto.creado.strftime("%d/%m/%Y %H:%M"),
+        ])
+
+    response = HttpResponse(
+        content_type=(
+            "application/vnd.openxmlformats-officedocument."
+            "spreadsheetml.sheet"
+        )
+    )
+    response["Content-Disposition"] = (
+        'attachment; filename="productos.xlsx"'
+    )
+
+    wb.save(response)
+    return response

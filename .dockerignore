@@ -12,4 +12,6 @@ staticfiles/
 media/
 *.md
 .vscode/
-tests/
+
+!sprint1_planning.md
+!fichas/*.md

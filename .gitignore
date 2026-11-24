@@ -24,3 +24,21 @@ media/
 # Sistema operativo
 Thumbs.db
 .DS_Store
+# Entornos virtuales (nunca subir)
+.venv/
+.venv_reparacion/
+venv/
+env_erp/
+
+# Logs de pruebas
+test_clean.log
+# Entornos virtuales
+env_erp_limpio/
+
+# Respaldos y bases de datos locales
+respaldo_*.json
+respaldo_erp.sqlite3
+templates/base_respaldo.html
+
+# Logs
+test_clean.l

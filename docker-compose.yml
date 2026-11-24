@@ -1,6 +1,5 @@
 # docker-compose.yml — Stack completo ERP Django con WeasyPrint
 # Incluye todos los servicios acumulados hasta W18
-version: '3.9'
 
 services:
 
